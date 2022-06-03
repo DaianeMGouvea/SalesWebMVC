@@ -7,29 +7,30 @@
         public string Email { get; set; }
         public DateTime BirthDate { get; set; }
         public double BaseSalary { get; set; }
-        public Departement Departement { get; set; }
-        public ICollection<SallesRecord> Sales { get; set; } = new List<SallesRecord>();
+        public Department Department { get; set; }
+        public ICollection<SalesRecord> Sales { get; set; } = new List<SalesRecord>();
 
         public Seller()
         {
+            
         }
 
-        public Seller(int id, string name, string email, DateTime birthDate, double baseSalary, Departement departement)
+        public Seller(int id, string name, string email, DateTime birthDate, double baseSalary, Department department)
         {
             Id = id;
             Name = name;
             Email = email;
             BirthDate = birthDate;
             BaseSalary = baseSalary;
-            Departement = departement;
+            Department = department;
         }
 
-        public void AddSales(SallesRecord sr)
+        public void AddSales(SalesRecord sr)
         {
             Sales.Add(sr);
         }
 
-        public void RemoveSales(SallesRecord sr)
+        public void RemoveSales(SalesRecord sr)
         {
             Sales.Remove(sr);
         }
@@ -38,6 +39,7 @@
         {
             return Sales.Where(sr => sr.Date >= initial && sr.Date <= final).Sum(sr => sr.Amount);
         }
+
 
     }
 }
