@@ -5,8 +5,7 @@ using SalesWebMVC.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 
-string mySqlConnection =
-              builder.Configuration.GetConnectionString("DefaultConnection");
+string mySqlConnection = builder.Configuration.GetConnectionString("SalesWebMVCContext");
 
 builder.Services.AddDbContextPool<SalesWebMVCContext>(options =>
                 options.UseMySql(mySqlConnection,
