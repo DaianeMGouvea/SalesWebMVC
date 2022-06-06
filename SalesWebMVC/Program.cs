@@ -13,6 +13,8 @@ builder.Services.AddDbContextPool<SalesWebMVCContext>(options => options.UseMySq
 
 builder.Services.AddScoped<SeedingService>();
 builder.Services.AddTransient<SellerService>();
+builder.Services.AddScoped<DepartmentService>();
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
