@@ -8,6 +8,7 @@ namespace SalesWebMVC.Controllers
 {
     public class DepartmentsController : Controller
     {
+
         private readonly SalesWebMVCContext _context;
 
         public DepartmentsController(SalesWebMVCContext context)
@@ -18,15 +19,13 @@ namespace SalesWebMVC.Controllers
         // GET: Departments
         public async Task<IActionResult> Index()
         {
-              return _context.Department != null ? 
-                          View(await _context.Department.ToListAsync()) :
-                          Problem("Entity set 'SalesWebMVCContext.Department'  is null.");
+            return View(await _context.Department.ToListAsync());
         }
 
         // GET: Departments/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Department == null)
+            if (id == null)
             {
                 return NotFound();
             }
@@ -48,8 +47,8 @@ namespace SalesWebMVC.Controllers
         }
 
         // POST: Departments/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name")] Department department)
@@ -66,7 +65,7 @@ namespace SalesWebMVC.Controllers
         // GET: Departments/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Department == null)
+            if (id == null)
             {
                 return NotFound();
             }
@@ -80,8 +79,8 @@ namespace SalesWebMVC.Controllers
         }
 
         // POST: Departments/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Department department)
@@ -117,7 +116,7 @@ namespace SalesWebMVC.Controllers
         // GET: Departments/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Department == null)
+            if (id == null)
             {
                 return NotFound();
             }
@@ -137,23 +136,15 @@ namespace SalesWebMVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Department == null)
-            {
-                return Problem("Entity set 'SalesWebMVCContext.Department'  is null.");
-            }
             var department = await _context.Department.FindAsync(id);
-            if (department != null)
-            {
-                _context.Department.Remove(department);
-            }
-            
+            _context.Department.Remove(department);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool DepartmentExists(int id)
         {
-          return (_context.Department?.Any(e => e.Id == id)).GetValueOrDefault();
+            return _context.Department.Any(e => e.Id == id);
         }
     }
 }

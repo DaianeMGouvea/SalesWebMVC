@@ -7,7 +7,7 @@ namespace SalesWebMVC.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "{0} required")]
-        [StringLength(60, MinimumLength = 3, ErrorMessage = "{0} size should be between {2} and {1} ")]
+        [StringLength(60, MinimumLength = 3, ErrorMessage = "{0} size should be between {2} and {1}")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "{0} required")]
@@ -29,16 +29,16 @@ namespace SalesWebMVC.Models
 
         public Department Department { get; set; }
 
+        [Display(Name = "Department")]
         public int DepartmentId { get; set; }
 
         public ICollection<SalesRecord> Sales { get; set; } = new List<SalesRecord>();
 
         public Seller()
         {
-
         }
 
-        public Seller(int id, string name, string email, DateTime birthDate, double baseSalary, Department department = null)
+        public Seller(int id, string name, string email, DateTime birthDate, double baseSalary, Department department)
         {
             Id = id;
             Name = name;
@@ -46,7 +46,6 @@ namespace SalesWebMVC.Models
             BirthDate = birthDate;
             BaseSalary = baseSalary;
             Department = department;
-   
         }
 
         public void AddSales(SalesRecord sr)
@@ -63,7 +62,6 @@ namespace SalesWebMVC.Models
         {
             return Sales.Where(sr => sr.Date >= initial && sr.Date <= final).Sum(sr => sr.Amount);
         }
-
 
     }
 }
