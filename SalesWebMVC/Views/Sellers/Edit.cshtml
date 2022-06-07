@@ -1,0 +1,42 @@
+﻿@model SalesWebMVC.Models.ViewModel.SellerFormViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h4>@ViewData["Title"]</h4>
+
+<h5>Seller</h5>
+<hr/>
+<div class="row">
+    <div class="col-md-4">
+        <div class="shadow-sm px-5 py-3">
+            <form asp-action="Edit">
+                <input type="hidden" asp-for="Seller.Id"/>
+                <div>
+                    <label asp-for="Seller.Name" class="col-form-label"></label>
+                    <input asp-for="Seller.Name" class="form-control"/>
+                </div>
+                <div>
+                    <label asp-for="Seller.Email" class="col-form-label"></label>
+                    <input asp-for="Seller.Email" class="form-control" type="email"/>
+                </div>
+                <div>
+                    <label asp-for="Seller.BirthDate" class="col-form-label"></label>
+                    <input asp-for="Seller.BirthDate" class="form-control" type="date"/>
+                </div>
+                <div>
+                    <label asp-for="Seller.BaseSalary" class="col-form-label"></label>
+                    <input asp-for="Seller.BaseSalary" class="form-control"/>    
+                </div>
+                <div class="form-group">
+                     <label asp-for="Seller.DepartmentId" class="control-label"></label>
+                     <select asp-for="Seller.DepartmentId" asp-items="@(new SelectList(Model.Departments,"Id", "Name"))" class="form-control"></select>
+                </div>
+                <div>
+                    <input type="submit" value="Save" class="btn btn-outline-primary my-3" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
