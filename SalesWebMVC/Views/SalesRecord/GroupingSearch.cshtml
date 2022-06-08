@@ -1,5 +1,4 @@
-﻿
-@model IEnumerable<IGrouping<Department, SalesRecord>>
+﻿@model IEnumerable<IGrouping<Department, SalesRecord>>
 
 @{
     ViewData["Title"] = "Grouping Search";
@@ -9,33 +8,35 @@
 
 <h2>@ViewData["Title"]</h2>
 
-<nav class="navbar navbar-inverse">
+<nav class="card border-0 navbar navbar-expand-lg bg-primary">
     <div class="container-fluid">
-        <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-                <div class="form-group">
-                    <label for="minDate">Min Date</label>
-                    <input type="date" class="form-control" name="minDate" value=@ViewData["minDate"]>
+        <form class="col-12 justify-content-between navbar-brand" role="search">
+            <div class="navbar-nav">
+                <div class="col-3 pe-3 nav-item">
+                    <label for="minDate" class="text-white">Min Date</label>
+                    <input type="date" class="form-control" name="minDate" value=@ViewData["minDate"] />
                 </div>
-                <div class="form-group">
-                    <label for="maxDate">Max Date</label>
-                    <input type="date" class="form-control" name="maxDate" value=@ViewData["maxDate"]>
+                <div class="col-3 pe-3 nav-item">
+                    <label for="maxDate" class="text-white">Max Date</label>
+                    <input type="date" class="form-control" name="maxDate" value=@ViewData["maxDate"] />
+                </div>
+                <div class="nav-item align-self-end">
+                    <button type="submit" class="btn btn-info">Filter</button>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Filter</button>
         </form>
     </div>
 </nav>
 
 @foreach (var departmentGroup in Model)
 {
-    <div class="panel panel-primary">
-        <div class="panel-heading">
+    <div class="card mt-3 border-info">
+        <div class="card-header bg-info border-0">
             <h3 class="panel-title">Department @departmentGroup.Key.Name, Total sales = @departmentGroup.Key.TotalSales(minDate, maxDate).ToString("F2")</h3>
         </div>
-        <div class="panel-body">
+        <div class="card-body">
             <table class="table table-striped table-hover">
-                <thead>
+                <thead class="bg-primary text-white b-0">
                     <tr class="success">
                         <th>
                             Date
@@ -51,7 +52,7 @@
                         </th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="border-white">
                     @foreach (var item in departmentGroup)
                     {
                         <tr>
