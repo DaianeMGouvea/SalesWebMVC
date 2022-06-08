@@ -14,8 +14,9 @@ builder.Services.AddDbContextPool<SalesWebMVCContext>(options => options.UseMySq
                       ServerVersion.AutoDetect(mySqlConnection)));
 
 builder.Services.AddScoped<SeedingService>();
-builder.Services.AddTransient<SellerService>();
+builder.Services.AddScoped<SellerService>();
 builder.Services.AddScoped<DepartmentService>();
+builder.Services.AddScoped<SalesRecordService>();
 
 
 // Add services to the container.
